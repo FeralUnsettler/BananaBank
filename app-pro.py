@@ -63,7 +63,8 @@ def registrar_transacao(user_id, tipo, valor):
 
 # --- AUTH ---
 def criar_usuario(nome, email, senha):
-    user = User(nome=nome, email=email, senha=pbkdf2_sha256.hash(senha)
+    user = User(nome=nome, email=email, 
+                senha=pbkdf2_sha256.hash(senha))
     session.add(user)
     session.commit()
 
