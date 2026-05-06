@@ -2,13 +2,16 @@
 
 🧱 1. Instalação
 
+```bash
 pip install streamlit sqlalchemy passlib pillow pandas
-
+```
 
 ---
 
 🧠 2. Código PRO (substitui teu app.py)
 
+
+```python
 import streamlit as st
 from sqlalchemy import create_engine, Column, Integer, String, Float
 from sqlalchemy.orm import sessionmaker, declarative_base
@@ -244,6 +247,7 @@ if st.session_state.user:
         df = pd.DataFrame(ranking).sort_values(by="Score", ascending=False)
         st.dataframe(df)
 
+```
 
 ---
 
@@ -262,7 +266,6 @@ Histórico financeiro
 Ranking social (engajamento)
 
 UI organizada em abas
-
 
 
 ---
