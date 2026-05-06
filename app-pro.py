@@ -1,7 +1,7 @@
 import streamlit as st
 from sqlalchemy import create_engine, Column, Integer, String, Float
 from sqlalchemy.orm import sessionmaker, declarative_base
-from passlib.hash import bcrypt
+from passlib.hash import pbkdf2_sha256
 from PIL import Image
 import os
 import pandas as pd
@@ -63,13 +63,13 @@ def registrar_transacao(user_id, tipo, valor):
 
 # --- AUTH ---
 def criar_usuario(nome, email, senha):
-    user = User(nome=nome, email=email, senha=bcrypt.hash(senha))
+    user = User(nome=nome, email=email, senha=pbkdf2_sha256.hash(senha)
     session.add(user)
     session.commit()
 
 def login(email, senha):
     user = session.query(User).filter_by(email=email).first()
-    if user and bcrypt.verify(senha, user.senha):
+    if user and pbkdf2_sha256.verify(senha, user.senha):
         return user
     return None
 
